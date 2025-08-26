@@ -1,18 +1,21 @@
 
-# College Checklist (Multi‑page + Firebase Auth)
+# College Checklist — Auth Landing + Gated App
 
-This site is a static, mobile‑friendly checklist deployed on GitHub Pages with:
-- Multi‑page navigation
-- High‑protein filters
-- Local autosave **and** cloud sync via **Firebase Authentication + Firestore**
+This package makes the **landing page a Sign in / Sign up screen** (`index.html`) and moves the app to `app.html`. All other pages are gated and require sign‑in.
 
-## 1) Firebase Console Setup
-1. Create a Firebase project → Add a **Web** app → copy the config.
-2. **Authentication → Sign‑in method**: Enable **Google** and Save.
-3. **Firestore Database**: Create a database (start in *Test Mode* for development).
-4. Update **security rules** (below), then Publish.
+## Files
+- `index.html` — Landing page: Google sign‑in + Email/Password sign‑up / sign‑in.
+- `app.html` — All Items page (app home) shown after authentication.
+- Other `*.html` — Section pages. All pages include an **auth guard** that redirects to `index.html` if not signed in.
+- `assets/auth-landing.js` — Handles Google and Email/Password flows on landing.
+- `assets/auth-guard.js` — Redirects unauthenticated users to the landing page.
+- `assets/auth.js` — In‑app auth UI (status, sign out, Save to Cloud) and Firestore syncing.
+- `assets/firebase-config.js` — Your Firebase config identifiers.
 
-### Firestore Rules (Users can only read/write their own document)
+## Firebase Console (one time)
+1. **Authentication → Sign‑in method**: Enable **Google** (and Email/Password if using it).
+2. **Firestore Database**: Create database.
+3. **Rules**:
 ```
 rules_version = '2';
 service cloud.firestore {
@@ -24,28 +27,17 @@ service cloud.firestore {
 }
 ```
 
-## 2) Deploy to GitHub Pages
-1. Create a public repo (or use an existing one).
-2. Upload **all files and the `assets/` folder** from this ZIP to the repo root.
-3. Repo **Settings → Pages** → Source: *Deploy from a branch*; Branch: `main` and `/ (root)` → Save.
-4. Visit `https://<your-username>.github.io/<repo>/`.
+## Deploy on GitHub Pages
+1. Upload everything to your repo root (replacing older files where needed).
+2. **Settings → Pages** → Source: *Deploy from a branch*; Branch: `main` and `/ (root)` → Save.
+3. Visit your Pages URL. You’ll see `index.html` (auth screen). After sign‑in, you’ll be taken to `app.html`.
 
-## 3) How it works
-- While **signed out**, the app stores progress in `localStorage`.
-- When you **Sign in with Google**, the app loads your data from Firestore (`users/{uid}.state`) and merges it with local state; cloud data takes precedence by default.
-- As you interact, it autosaves to Firestore (debounced) and again on page unload.
-- Use **Save to Cloud** to force a save any time.
+## Behavior
+- Signed‑out visitors always land on `index.html` to sign in / sign up.
+- After authentication, the app loads or creates `users/{uid}` in Firestore and syncs the local checklist (`college_movein_checklist_v3_multi_hp`).
+- All app pages are gated and will redirect to `index.html` if the session is missing.
 
-## 4) Files of interest
-- `assets/firebase-config.js` — your Firebase project identifiers.
-- `assets/auth.js` — sign‑in/out and Firestore sync logic.
-- `assets/app.js` — checklist UI and local autosave.
-- `assets/data.js` — all items and sections.
-- Each `*.html` — page shell including auth controls and scripts.
+## Notes
+- If you previously shared the All Items link as `/index.html`, update it to `/app.html`.
+- On mobile, Google sign‑in uses **redirect** (more reliable than pop‑ups). On desktop, it uses pop‑up by default.
 
-## 5) Troubleshooting
-- **Pop‑ups blocked on mobile?** The app uses **redirect** on mobile for Google sign‑in.
-- **LocalStorage disabled (Private mode)?** Sign‑in works, but local autosave may be limited.
-- **Not seeing updates?** Hard refresh (Cmd/Ctrl+Shift+R) or clear site data for the Pages URL.
-
----

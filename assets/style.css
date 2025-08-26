@@ -35,3 +35,14 @@ input[type=checkbox]{width:22px;height:22px;accent-color:var(--accent2);flex:0 0
 .add-row{display:flex;gap:8px;margin-top:10px}
 .add-row input{flex:1;min-height:44px}
 @media (max-width:540px){ input[type="search"], select{width:100%} .toolbar{flex-direction:column;align-items:stretch} .progress{margin-left:0} }
+
+/* Landing page card */
+.center{min-height:100dvh; display:grid; place-items:center; padding:24px}
+.card{width:min(560px,100%); background:var(--card); border:1px solid #1f2a44; border-radius:14px; padding:22px}
+.row{display:flex; gap:10px; flex-wrap:wrap}
+.input{width:100%; padding:12px; border-radius:10px; border:1px solid #2a3758; background:#0d1426; color:var(--text)}
+.btn{border:1px solid #26314f; background:#0f1a30; color:var(--text); border-radius:10px; padding:12px 14px; cursor:pointer}
+.btn.primary{border-color:#1f3b2d; background:#0f1f1a}
+.note{color:#94a3b8; font-size:.9rem}
+.err{color:#fca5a5; font-size:.9rem; margin-top:6px}
+.spinner{display:none}

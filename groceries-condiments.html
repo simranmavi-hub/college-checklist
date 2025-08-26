@@ -8,11 +8,12 @@
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<div id="gate" class="center" style="display:none"><div class="card"><p>Checking sign‑in…</p></div></div>
 <header>
   <div class="wrap">
     <h1>College Move‑In & Grocery — High‑Protein</h1>
     <nav>
-      <a href="index.html">All Items</a>
+      <a href="app.html">All Items</a>
       <a href="home.html">Home Setup</a>
       <a href="groceries-pantry.html">Pantry</a>
       <a href="groceries-fridge.html">Fridge</a>
@@ -35,7 +36,6 @@
       <label class="toggle"><input type="checkbox" id="hpHighlight" checked> Highlight high‑protein</label>
       <div class="progress" id="progress">0 of 0 checked</div>
       <span id="authStatus" style="margin-left:auto">Not signed in</span>
-      <button id="btnSignIn" onclick="signIn()">Sign in with Google</button>
       <button id="btnSaveCloud" onclick="saveNow()" style="display:none">Save to Cloud</button>
       <button id="btnSignOut" onclick="signOutNow()" style="display:none">Sign out</button>
     </div>
@@ -43,12 +43,13 @@
 </header>
 <main class="wrap">
   <div id="container"></div>
-  <div class="footer">💡 Progress autosaves on this device and syncs to your account when signed in. Export/Import is always available on the <a href="index.html">All Items</a> page.</div>
+  <div class="footer">💡 Progress syncs to your account. Need another section? Use the tabs above.</div>
 </main>
 <script src="assets/data.js"></script>
 <script>const PAGE = {"allowedCats": ["grocery"], "allowedSections": ["Grocery \u2014 Condiments & Flavor"]};</script>
 <script src="assets/app.js"></script>
 <script type="module" src="assets/firebase-config.js"></script>
+<script type="module" src="assets/auth-guard.js"></script>
 <script type="module" src="assets/auth.js"></script>
 </body>
 </html>

@@ -9,10 +9,9 @@ import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/fireb
 import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
-try { getAnalytics(app); } catch(e) { /* analytics optional on non-https dev */ }
+try { getAnalytics(app); } catch(e) {}
 const auth = getAuth(app);
 const db   = getFirestore(app);
-
 await setPersistence(auth, browserLocalPersistence);
 
 const STATE_KEY = 'college_movein_checklist_v3_multi_hp';
@@ -23,7 +22,7 @@ async function loadFromCloud(uid){
   if(snap.exists()){
     const remote = snap.data().state || {};
     const local  = JSON.parse(localStorage.getItem(STATE_KEY) || '{}');
-    const merged = { ...local, ...remote }; // remote wins
+    const merged = { ...local, ...remote };
     localStorage.setItem(STATE_KEY, JSON.stringify(merged));
     if(window.render) window.render();
   }
