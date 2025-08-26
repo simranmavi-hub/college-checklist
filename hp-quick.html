@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#0b1320"/>
+<title>Checklist — High‑Protein Quick Builders</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>College Move‑In & Grocery — High‑Protein</h1>
+    <nav>
+      <a href="index.html">All Items</a>
+      <a href="home.html">Home Setup</a>
+      <a href="groceries-pantry.html">Pantry</a>
+      <a href="groceries-fridge.html">Fridge</a>
+      <a href="groceries-freezer.html">Freezer</a>
+      <a href="groceries-condiments.html">Condiments</a>
+      <a href="groceries-spices.html">Spices</a>
+      <a href="groceries-snacks.html">Breakfast & Snacks</a>
+      <a href="hp-addons.html">HP Add‑Ons & Swaps</a>
+      <a href="hp-quick.html" class="active">HP Quick Builders</a>
+    </nav>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search items…"/>
+      <select id="filter" aria-label="Show">
+        <option value="all">Show: All</option>
+        <option value="home">Home setup only</option>
+        <option value="grocery">Groceries only</option>
+        <option value="hp">High‑protein focused</option>
+      </select>
+      <label class="toggle"><input type="checkbox" id="hpOnly"> Show only high‑protein</label>
+      <label class="toggle"><input type="checkbox" id="hpHighlight" checked> Highlight high‑protein</label>
+      <div class="progress" id="progress">0 of 0 checked</div>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <div id="container"></div>
+  <div class="footer">💡 Progress autosaves on this device. Export/Import controls are on the <a href="index.html">All Items</a> page.</div>
+</main>
+<script src="assets/data.js"></script>
+<script>const PAGE = {"allowedCats": ["grocery"], "allowedSections": ["Quick High\u2011Protein Meal Builders"], "hpDefaultOnly": true};</script>
+<script src="assets/app.js"></script>
+</body>
+</html>
