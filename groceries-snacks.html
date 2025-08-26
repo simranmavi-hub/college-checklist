@@ -34,15 +34,21 @@
       <label class="toggle"><input type="checkbox" id="hpOnly"> Show only high‑protein</label>
       <label class="toggle"><input type="checkbox" id="hpHighlight" checked> Highlight high‑protein</label>
       <div class="progress" id="progress">0 of 0 checked</div>
+      <span id="authStatus" style="margin-left:auto">Not signed in</span>
+      <button id="btnSignIn" onclick="signIn()">Sign in with Google</button>
+      <button id="btnSaveCloud" onclick="saveNow()" style="display:none">Save to Cloud</button>
+      <button id="btnSignOut" onclick="signOutNow()" style="display:none">Sign out</button>
     </div>
   </div>
 </header>
 <main class="wrap">
   <div id="container"></div>
-  <div class="footer">💡 Progress autosaves on this device. Export/Import controls are on the <a href="index.html">All Items</a> page.</div>
+  <div class="footer">💡 Progress autosaves on this device and syncs to your account when signed in. Export/Import is always available on the <a href="index.html">All Items</a> page.</div>
 </main>
 <script src="assets/data.js"></script>
 <script>const PAGE = {"allowedCats": ["grocery"], "allowedSections": ["Grocery \u2014 Breakfast & Snacks"]};</script>
 <script src="assets/app.js"></script>
+<script type="module" src="assets/firebase-config.js"></script>
+<script type="module" src="assets/auth.js"></script>
 </body>
 </html>
